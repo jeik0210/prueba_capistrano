@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-md-2">
+<%= form_tag(user_new_path, method: 'post') do %>
+	<%= label_tag :name, 'Nombres'%>
+	<%= text_field :user , :name , class: 'form-control'%>
+	<%= label_tag :paternal, 'Apellido Paterno'%>
+	<%= text_field :user, :paternal, class: 'form-control'%>
+	<%= label_tag :maternal, 'Apellido Materno'%>
+	<%= text_field :user, :maternal,class: 'form-control'%>
+	<%= label_tag :date, 'Fecha de Nacimiento'%>
+	<%= date_field :user, :date_nac ,class: 'form-control'%>
+	<%= label_tag :sexo, 'Genero'%>
+	<br>
+	<%= label_tag :sexo, 'Masculino' %>
+	<%= radio_button :user, :sexo ,true %>
+	<%= label_tag :sexo, 'Femenino'%>
+	<%= radio_button :user, :sexo, false %>
+	<%= label_tag :editorial, 'editorial'%>
+	<br>
+	<%= submit_tag 'guardar'%>
+<% end %>
+</div>
+</div>

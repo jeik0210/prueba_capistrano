@@ -1,0 +1,35 @@
+<%= form_tag(user_update_path, method: 'post') do %>
+	<%= hidden_field_tag :user_id, user.id %>
+	<%= label_tag :name, 'Nombres'%>
+	<%= text_field :user , :name ,value: user.name, class: 'form-control'%>
+	<%= label_tag :paternal, 'Apellido Paterno'%>
+	<%= text_field :user, :paternal,value: user.paternal ,class: 'form-control'%>
+	<%= label_tag :maternal, 'Apellido Materno'%>
+	<%= text_field :user, :maternal,value: user.maternal,class: 'form-control'%>
+	<%= label_tag :date, 'Fecha de Nacimiento'%>
+	<%= date_field :user, :date_nac ,value: user.date_nac,class: 'form-control'%>
+	<%= label_tag :sexo, 'Genero'%>
+	<br>
+		<% if user.sexo %>
+<%= label :user, :sexo, "Masculino", :value => "true"  %>
+<%= radio_button :user, :sexo, true, checked: true %>
+<br>
+<%= label :user, :sexo, "Femenino", :value => "false" %>
+<%= radio_button :user, :sexo, false,checked: false %>
+<br>
+<% else %>
+<%= label :user, :sexo, "Masculino", :value => "true"  %>
+<%= radio_button :user, :sexo, true,checked: true  %>
+<br>
+<%= label :user, :sexo, "Femenino", :value => "false" %>
+<%= radio_button :user, :sexo, false, checked: true %>
+<br>
+<% end %>
+
+
+	
+	<%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+	Guardar <span class="glyphicon glyphicon-floppy-disk"></span>
+	<% end %>
+
+<%end%>
