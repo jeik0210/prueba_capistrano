@@ -14,3 +14,10 @@ Editorial.create(name: 'editorial la voz',pais: 'Argentina', direccion: 'CALLE S
 Editorial.create(name: 'editorial el peruano',pais: 'Argentina', direccion: 'ALDAMA ESQ. 20 DE NOVIEMBRE')
 <%= select_tag :jeison, options_from_collection_for_select(Editorial.all,:id,:name), class: 'form-control'%>
 =end
+def too_bool number
+	number == 1
+end
+50.times do
+		p = User.new(name: Faker::Name.first_name, paternal: Faker::Name.last_name, maternal: Faker::Name.last_name, date_nac: Faker::Date.forward(23) ,sexo: too_bool(rand(2)),editorial_id: Faker::Number.between(1, 6) )
+		p.save
+end

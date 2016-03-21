@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :editorial
+  before_save :up_full_name
+  
   def full_name
   	paternal.to_s + " " + maternal.to_s + " " + name.to_s
   end

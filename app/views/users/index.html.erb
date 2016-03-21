@@ -1,4 +1,23 @@
 <h2>usuarios</h2>
+<div class="col-md-12">
+	<div class="row">
+		<div class="form-group">
+				<%= form_tag(users_path(page: '1'), method: 'get') do %>
+				<div class="col-md-4">
+					<%= text_field_tag :paternal, '', {class: 'form-control', placeholder: 'Apellido paterno'} %>
+				</div>
+				<div class="col-md-4">
+					<%= text_field_tag :maternal, '', {class: 'form-control', placeholder: 'Apellido materno'} %>
+				</div>
+				<div class="col-md-2">
+					<%= submit_tag 'Buscar', class: 'btn' %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
 <h5>existen actualmente <b><%= User.count %></b> usuarios</h5>
 <div class="row">
 <div class="col-md-8">
@@ -9,6 +28,7 @@
 		<td>fecha de nacimiento</td>
 		<td>sexo</td>
 		<td>Editorial</td>
+		<td>posts</td>
 	</tr>
 	<%@user.each do |u|%>
 		<tr>
@@ -22,7 +42,16 @@
 					<%= "F" %>
 				<% end %>
 			</td>
-			
+			<td><%= u.editorial%></td>
+			<td></td>
+			<td>
+				<%= form_tag(user_delete_path, method: 'post') do %>
+				<%= hidden_field_tag :user_id, u.id %>
+				<%= button_tag type: 'submit', class: "btn btn-danger text-center", data: {confirm: '¿Está seguro?'} do %>
+				<span class="glyphicon glyphicon-remove"></span>
+				<% end %>
+				<% end %>
+			</td>
 		</tr>
 			<div class="modal fade" id="modal_update_user<%= u.id.to_s %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -43,5 +72,5 @@
 </div>
 </div>
 <!-- Modal -->
-
+<div class="text-center"><%= will_paginate @users, renderer: BootstrapPagination::Rails %></div>
 <%= link_to 'crear nuevo usuario' , user_show_path %>
